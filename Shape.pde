@@ -9,6 +9,11 @@ class Shape {
   Timer _countdown;
   
   int _index;
+  
+  // orbit variables
+  
+  float _orbitSpeed;
+  Float _orbitX, _orbitY, _orbitRadius;
 
   // constructor
   
@@ -144,6 +149,19 @@ class Shape {
       _opacity += dt * 0.05;
       _objFill = color(hValue, sValue, bValue, int(_opacity));
     }
+  }
+  
+  void setOrbit(float orbitX, float orbitY, float orbitRadius, float orbitSpeed) {
+    _orbitX = orbitX; 
+    _orbitY = orbitY; 
+    _orbitRadius = orbitRadius;
+    _orbitSpeed = orbitSpeed;
+  }
+  
+  void orbit() {
+    float t = millis()/_orbitSpeed;
+    _objX = (int)(_orbitX + _orbitRadius * cos(t));
+    _objY = (int)(_orbitY + _orbitRadius * sin(t));
   }
 
   boolean isClicked() {

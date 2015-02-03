@@ -1,10 +1,12 @@
 class Polygon extends Shape {
 
   // properties
+  
+  int _timeIn = 0;
 
   // constructor
-  Polygon(float objX, float objY, float objWidth, float objHeight, int timeIn) {
-    super(objX, objY, objWidth, objHeight, timeIn);
+  Polygon(float objX, float objY, float objWidth, float objHeight) {
+    super(objX, objY, objWidth, objHeight, 0);
     fill(_objFill);
   }
 
