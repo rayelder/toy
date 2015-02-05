@@ -1,4 +1,4 @@
-class Polygon extends Shape {
+ class Polygon extends Shape {
 
   // properties
   
