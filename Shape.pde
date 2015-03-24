@@ -13,7 +13,9 @@ class Shape {
   // orbit variables
   
   float _orbitSpeed;
-  Float _orbitX, _orbitY, _orbitRadius;
+  float _orbitX, _orbitY, _orbitRadius;
+  
+  float _objLeaderX, _objLeaderY;
 
   // constructor
   
@@ -162,6 +164,9 @@ class Shape {
     float t = millis()/_orbitSpeed;
     _objX = (int)(_orbitX + _orbitRadius * cos(t));
     _objY = (int)(_orbitY + _orbitRadius * sin(t));
+    
+    _objLeaderX= (int)(_orbitX + _orbitRadius * cos(t + 0.125));
+    _objLeaderY= (int)(_orbitY + _orbitRadius * sin(t + 0.125));
   }
 
   boolean isClicked() {

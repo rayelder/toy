@@ -1,7 +1,7 @@
- class Polygon extends Shape {
+class Polygon extends Shape {
 
   // properties
-  
+
   int _timeIn = 0;
 
   // constructor
@@ -18,30 +18,37 @@
       boolean over = mouseOver();
       if (over) {
         fill(_black);
-      } 
-      else {
+      } else {
         fill(_objFill);
       }
-      polygon(3, _objX, _objY + 8, 66, 66, -PI / 2.0);
+      // polygon(3, _objX, _objY + 8, 66, 66, -PI / 2.0);
+      // polygon(3, _objX, _objY, 66, 66, -PI / 2.0);
+      fill(_black);
+      ellipse(_objX, _objY, 6, 6);
+      stroke(_black);
+      noFill();      
+      line(_objX, _objY, _objLeaderX, _objLeaderY);
     }
   }
 
   void polygon(int n, float cx, float cy, float w, float h, float startAngle) {
 
     noStroke();
-    // fill(_black);
-    float angle = TWO_PI/ n;
+
+    // set angle
+    float angle = TWO_PI / n;
 
     /* The horizontal "radius" is one half the width;
-       the vertical "radius" is one half the height */
+     the vertical "radius" is one half the height */
+
     w = w / 2.0;
     h = h / 2.0;
 
     beginShape();
     for (int i = 0; i < n; i++)
     {
-      vertex(cx + w * cos(startAngle + angle * i),
-        cy + h * sin(startAngle + angle * i));
+      vertex(cx + w * cos(startAngle + angle * i), 
+      cy + h * sin(startAngle + angle * i));
     }
     endShape(CLOSE);
   }
@@ -57,5 +64,5 @@
     }
     return mouseOver;
   }
-
 }
+
