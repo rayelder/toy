@@ -10,6 +10,9 @@ Square ray;
 
 void setup() {
   size(600, 600);
+  
+  // set frame rate to 60 fps
+  frameRate(60);
 
   // set the color mode to HSB instead of RGB
   colorMode(HSB, 360, 100, 100, 100);
