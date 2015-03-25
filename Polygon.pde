@@ -22,12 +22,15 @@ class Polygon extends Shape {
         fill(_objFill);
       }
       // polygon(3, _objX, _objY + 8, 66, 66, -PI / 2.0);
-      // polygon(3, _objX, _objY, 66, 66, -PI / 2.0);
-      fill(_black);
-      ellipse(_objX, _objY, 6, 6);
-      stroke(_black);
-      noFill();      
-      line(_objX, _objY, _objLeaderX, _objLeaderY);
+      //      polygon(3, _objX, _objY, 66, 66, -PI / 2.0);
+      polygon(3, _objX, _objY, 66, 66, _objAngle);
+      /*
+      fill(_red);
+       ellipse(_objX, _objY, 6, 6);
+       stroke(_red);
+       noFill();      
+       line(_objX, _objY, _objLeaderX, _objLeaderY);
+       */
     }
   }
 

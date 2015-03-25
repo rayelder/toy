@@ -7,25 +7,27 @@ class Shape {
   int _countToShow;
   PVector position;
   Timer _countdown;
-  
+
   int _index;
-  
+
   // orbit variables
-  
+
   float _orbitSpeed;
   float _orbitX, _orbitY, _orbitRadius;
-  
+
   float _objLeaderX, _objLeaderY;
+  float _objAngle;
+  boolean _setAngle;
 
   // constructor
-  
+
   Shape(int index, float objX, float objY, float objWidth, float objHeight, int timeIn) {
 
     // set rollover default to true
     _showRollover = true; 
 
     _over = false;
-    
+
     _index = index;
 
     _latStart = 90.0;
@@ -54,7 +56,7 @@ class Shape {
 
     noStroke();
   }
-  
+
 
   Shape(float objX, float objY, float objWidth, float objHeight, int timeIn) {
 
@@ -62,7 +64,7 @@ class Shape {
     _showRollover = true; 
 
     _over = false;
-    
+
     _index = 0;
 
     _latStart = 90.0;
@@ -96,11 +98,11 @@ class Shape {
 
   void display() {
   }
-  
+
   void setIndex(int index) {
     _index = index;
   }
-  
+
   int getIndex() {
     return _index;
   }
@@ -133,8 +135,7 @@ class Shape {
     float dh = h - _objHeight;
     if (abs(dh) > 1) {
       _objHeight += dh * _easing;
-    } 
-    else {
+    } else {
       _objHeight = h;
     }
   }
@@ -152,21 +153,27 @@ class Shape {
       _objFill = color(hValue, sValue, bValue, int(_opacity));
     }
   }
-  
+
   void setOrbit(float orbitX, float orbitY, float orbitRadius, float orbitSpeed) {
     _orbitX = orbitX; 
     _orbitY = orbitY; 
     _orbitRadius = orbitRadius;
     _orbitSpeed = orbitSpeed;
   }
-  
+
   void orbit() {
     float t = millis()/_orbitSpeed;
     _objX = (int)(_orbitX + _orbitRadius * cos(t));
     _objY = (int)(_orbitY + _orbitRadius * sin(t));
-    
-    _objLeaderX= (int)(_orbitX + _orbitRadius * cos(t + 0.125));
-    _objLeaderY= (int)(_orbitY + _orbitRadius * sin(t + 0.125));
+
+    _objLeaderX= (int)(_orbitX + _orbitRadius * cos(t + 0.1));
+    _objLeaderY= (int)(_orbitY + _orbitRadius * sin(t + 0.1));
+
+    float dx = _objLeaderX - _objX;
+    float dy = _objLeaderY - _objY;
+
+    _objAngle = atan2(dy, dx);
+    // println("_objAngle: " + _objAngle);
   }
 
   boolean isClicked() {
@@ -211,9 +218,9 @@ class Shape {
   void setGPS(int xStart, int xEnd, int yStart, int yEnd) {
     _objX = map(_objLon, _lonStart, _lonEnd, xStart, xEnd);
     _objY = map(_objLat, _latStart, _latEnd, yStart, yEnd);
-    
+
     // set the position to fix mouseOver()
-    setPosition(_objX,_objY);
+    setPosition(_objX, _objY);
   }
 
   void setWidth(float objWidth) {
